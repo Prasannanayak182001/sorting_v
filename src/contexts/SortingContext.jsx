@@ -204,26 +204,70 @@ function SortingProvider({ children }) {
         await quickSortHelper(arr, i, end);
     }
 
-    const radixSort = async () => {
-        let arr = sortingState.array.map((item) => item.value);
-        let maxDigitCount = mostDigits(arr);
+    // const radixSort = async () => {
+    //     let arr = sortingState.array.map((item) => item.value);
+    //     let maxDigitCount = mostDigits(arr);
 
-        for (let k = 0; k < maxDigitCount; k++) {
-            let digitBuckets = Array.from({ length: 10 }, () => []);
-            for (let i = 0; i < arr.length; i++) {
-                let digit = getDigit(arr[i], k);
-                digitBuckets[digit].push(arr[i]);
-            }
+    //     for (let k = 0; k < maxDigitCount; k++) {
+    //         let digitBuckets = Array.from({ length: 10 }, () => []);
+    //         for (let i = 0; i < arr.length; i++) {
+    //             let digit = getDigit(arr[i], k);
+    //             digitBuckets[digit].push(arr[i]);
+    //         }
 
-            arr = [].concat(...digitBuckets);
+    //         arr = [].concat(...digitBuckets);
 
-            for (let i = 0; i < arr.length; i++) {
-                changeBar(i, { value: arr[i], state: "selected" });
-                await awaitTimeout(sortingState.delay);
-                changeBar(i, { value: arr[i], state: "idle" });
-            }
-        }
-    };
+    //         for (let i = 0; i < arr.length; i++) {
+    //             changeBar(i, { value: arr[i], state: "selected" });
+    //             await awaitTimeout(sortingState.delay);
+    //             changeBar(i, { value: arr[i], state: "idle" });
+    //         }
+    //     }
+    // };
+    // const heapSort = async () => {
+    //     let arr = sortingState.array.map((item) => item.value);
+    
+    //     const heapify = (array, n, i) => {
+    //         let largest = i; // Initialize largest as root
+    //         let left = 2 * i + 1; // left = 2*i + 1
+    //         let right = 2 * i + 2; // right = 2*i + 2
+    
+    //         // If left child is larger than root
+    //         if (left < n && array[left] > array[largest]) {
+    //             largest = left;
+    //         }
+    
+    //         // If right child is larger than largest so far
+    //         if (right < n && array[right] > array[largest]) {
+    //             largest = right;
+    //         }
+    
+    //         // If largest is not root
+    //         if (largest !== i) {
+    //             [array[i], array[largest]] = [array[largest], array[i]]; // Swap
+    
+    //             // Recursively heapify the affected sub-tree
+    //             heapify(array, n, largest);
+    //         }
+    //     };
+    
+    //     // Build heap
+    //     let n = arr.length;
+    //     for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+    //         heapify(arr, n, i);
+    //     }
+    
+    //     // One by one extract an element from heap
+    //     for (let i = n - 1; i >= 0; i--) {
+    //         // Move current root to end
+    //         [arr[0], arr[i]] = [arr[i], arr[0]]; // Swap
+    //         await changeBar(i, { value: arr[i], state: "selected" });
+    //         await awaitTimeout(sortingState.delay);
+    //         await changeBar(i, { value: arr[i], state: "idle" });
+    //         // Call heapify on the reduced heap
+    //         heapify(arr, i, 0);
+    //     }
+    // };
 
     const algorithmMap = {
         "bubble_sort": bubbleSort,
@@ -231,7 +275,8 @@ function SortingProvider({ children }) {
         "selection_sort": selectionSort,
         "merge_sort": mergeSort,
         "quick_sort": quickSort,
-        "radix_sort": radixSort
+        // "radix_sort": radixSort,
+        // "heap_sort" : heapSort
     }
 
     const startVisualizing = async () => {

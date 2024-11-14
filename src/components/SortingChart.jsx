@@ -55,14 +55,14 @@ function SortingChart() {
                 >
                     Quick Sort
                 </button>
-                <button
+                {/* <button
                     onClick={() => changeAlgorithm("radix_sort")}
                     className={`bg-carbon text-white px-5 py-3 rounded-3xl ${
                         sortingState.algorithm === "radix_sort" ? "bg-turquoise-dark" : "hover:bg-carbon-light"
                     } transition-all`}
                 >
                     Radix Sort
-                </button>
+                </button> */}
             </div>
 
             <div className="max-w-3xl w-full">
@@ -129,6 +129,7 @@ function SortingChart() {
                                         <td className={`px-4 py-1 ${i === 0 ? "pt-2" : ""}`}><span className={`px-1.5 py-0.5 rounded-md bg-${algorithmInfos[key].time_complexity.average[1]}`}>{algorithmInfos[key].time_complexity.average[0]}</span></td>
                                         <td className={`px-4 py-1 ${i === 0 ? "pt-2" : ""} border-r border-carbon-light`}><span className={`px-1.5 py-0.5 rounded-md bg-${algorithmInfos[key].time_complexity.worst[1]}`}>{algorithmInfos[key].time_complexity.worst[0]}</span></td>
                                         <td className={`px-4 py-1 ${i === 0 ? "pt-2" : ""}`}><span className={`px-1.5 py-0.5 rounded-md bg-${algorithmInfos[key].space_complexity[1]}`}>{algorithmInfos[key].space_complexity[0]}</span></td>
+                                        
                                     </tr>
                                 ))}
                             </tbody>
